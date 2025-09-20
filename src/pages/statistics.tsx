@@ -19,7 +19,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 type TimeRange = 'week' | 'month' | 'year'
 
-export function Statistics() {
+export default function Statistics() {
   const { habits, getHabitStats, getWeekProgress, getMonthProgress } = useHabitStore()
   const [selectedTimeRange, setSelectedTimeRange] = useState<TimeRange>('week')
   // const [selectedHabit, setSelectedHabit] = useState<string | null>(null)

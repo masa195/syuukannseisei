@@ -8,13 +8,8 @@ import {
   BarChart3, 
   MapPin, 
   Shield, 
-  Star, 
   ArrowRight, 
-  Users, 
-  Zap, 
-  Heart,
   CheckCircle,
-  Smartphone,
   Globe,
   Lock
 } from 'lucide-react'

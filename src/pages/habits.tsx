@@ -38,7 +38,7 @@ const initialFormData: HabitFormData = {
   reminderTime: '',
 }
 
-export function Habits() {
+export default function Habits() {
   const { habits, addHabit, updateHabit, deleteHabit, toggleHabitActive } = useHabitStore()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingHabit, setEditingHabit] = useState<string | null>(null)

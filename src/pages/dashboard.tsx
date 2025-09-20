@@ -16,7 +16,7 @@ import {
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-export function Dashboard() {
+export default function Dashboard() {
   const { 
     getActiveHabits, 
     getTodayProgress, 

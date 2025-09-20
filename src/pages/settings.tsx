@@ -20,7 +20,7 @@ import {
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 
-export function Settings() {
+export default function Settings() {
   const { theme, setTheme } = useTheme()
   const { habits, completions, dailyProgress } = useHabitStore()
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
