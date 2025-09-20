@@ -113,7 +113,7 @@ export default function Terms() {
             </ul>
           </section>
 
-          <section>
+          <section id="退会">
             <h2 className="text-xl font-semibold mb-3">第7条（退会）</h2>
             <p className="text-muted-foreground">
               ユーザーは、当社の定める退会手続により、本サービスから退会できるものとします。
@@ -137,7 +137,7 @@ export default function Terms() {
             </div>
           </section>
 
-          <section>
+          <section id="料金">
             <h2 className="text-xl font-semibold mb-3">第8条（料金および支払い）</h2>
             <p className="text-muted-foreground">
               本サービスは、無料プランと有料プランを提供しています。

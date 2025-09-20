@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Target, Calendar, BarChart3, Bell, Users, Star, CheckCircle, Zap, Heart, Smartphone, LogIn } from 'lucide-react'
+import { Target, Calendar, BarChart3, Bell, Users, Star, CheckCircle, Zap, Heart, Smartphone, LogIn, Sparkles, MapPin, ArrowRight } from 'lucide-react'
 import { PaymentModal } from '@/components/payment/payment-modal'
 import { AuthModal } from '@/components/auth/auth-modal'
 import { useAuthStore } from '@/store/authStore'
@@ -101,6 +101,33 @@ export default function Landing() {
         '専任サポート'
       ],
       popular: false
+    }
+  ]
+
+  const newFeatures = [
+    {
+      icon: Sparkles,
+      title: 'ウェルカムフロー',
+      description: '初回訪問時に楽しいオンボーディングでアプリの魅力を紹介',
+      color: 'from-blue-500 to-purple-500'
+    },
+    {
+      icon: Target,
+      title: '習慣作成ウィザード',
+      description: '5ステップの楽しい習慣作成で、簡単に習慣を設定',
+      color: 'from-green-500 to-blue-500'
+    },
+    {
+      icon: Heart,
+      title: '祝福アニメーション',
+      description: '習慣完了時の祝福エフェクトで達成感を演出',
+      color: 'from-pink-500 to-red-500'
+    },
+    {
+      icon: MapPin,
+      title: '町育成ゲーム',
+      description: '習慣完了で町が発展！建物を建て、住民を増やそう',
+      color: 'from-green-500 to-teal-500'
     }
   ]
 
@@ -296,6 +323,53 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* 新機能セクション */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Sparkles className="h-8 w-8 text-blue-500" />
+              <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                新機能
+              </h3>
+              <Sparkles className="h-8 w-8 text-purple-500" />
+            </div>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              最新のアップデートで、より楽しく効果的に習慣を身につけましょう！
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {newFeatures.map((feature, index) => (
+              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-0 shadow-md group">
+                <CardHeader className="pb-4">
+                  <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <feature.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl font-semibold mb-2">{feature.title}</CardTitle>
+                  <CardDescription className="text-gray-600">
+                    {feature.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button 
+              size="lg"
+              className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              asChild
+            >
+              <a href="/app/features">
+                新機能を詳しく見る
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* 料金プランセクション */}
       <section id="pricing" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
@@ -370,12 +444,21 @@ export default function Landing() {
               </ul>
             </div>
             <div>
-              <h5 className="text-lg font-semibold mb-4">サポート</h5>
+              <h5 className="text-lg font-semibold mb-4">アプリ</h5>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="/app" className="hover:text-white transition-colors">アプリを開く</a></li>
+                <li><a href="/app/features" className="hover:text-white transition-colors">新機能紹介</a></li>
+                <li><a href="/app/town" className="hover:text-white transition-colors">町を見る</a></li>
+                <li><a href="/app/statistics" className="hover:text-white transition-colors">統計を見る</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="text-lg font-semibold mb-4">法的文書</h5>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="/terms" className="hover:text-white transition-colors">利用規約</a></li>
                 <li><a href="/privacy" className="hover:text-white transition-colors">プライバシーポリシー</a></li>
-                <li><a href="/app" className="hover:text-white transition-colors">アプリを開く</a></li>
-                <li><a href="/app/town" className="hover:text-white transition-colors">町を見る</a></li>
+                <li><a href="/terms#退会" className="hover:text-white transition-colors">退会手続き</a></li>
+                <li><a href="/terms#料金" className="hover:text-white transition-colors">料金詳細</a></li>
               </ul>
             </div>
             <div>
