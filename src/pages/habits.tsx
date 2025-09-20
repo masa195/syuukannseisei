@@ -5,15 +5,16 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { useHabitStore } from '@/store/habitStore'
 import { HABIT_COLORS, HABIT_ICONS } from '@/types/habit'
+import { HabitWizard } from '@/components/habits/habit-wizard'
 import { 
   Plus, 
   Edit, 
   Trash2, 
-  
   Clock,
   Calendar,
   CheckCircle2,
-  X
+  X,
+  Sparkles
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
@@ -41,6 +42,7 @@ const initialFormData: HabitFormData = {
 export default function Habits() {
   const { habits, addHabit, updateHabit, deleteHabit, toggleHabitActive } = useHabitStore()
   const [isFormOpen, setIsFormOpen] = useState(false)
+  const [isWizardOpen, setIsWizardOpen] = useState(false)
   const [editingHabit, setEditingHabit] = useState<string | null>(null)
   const [formData, setFormData] = useState<HabitFormData>(initialFormData)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null)
@@ -100,6 +102,19 @@ export default function Habits() {
     setEditingHabit(null)
   }
 
+  const handleWizardComplete = (habitData: any) => {
+    addHabit({
+      ...habitData,
+      isActive: true,
+      completions: [],
+    })
+    toast.success('🎉 素晴らしい習慣ができました！', {
+      duration: 3000,
+      icon: '✨'
+    })
+    setIsWizardOpen(false)
+  }
+
   return (
     <div className="space-y-6">
       {/* ヘッダー */}
@@ -110,10 +125,22 @@ export default function Habits() {
             習慣を作成・編集して、目標達成をサポートします
           </p>
         </div>
-        <Button onClick={() => setIsFormOpen(true)}>
-          <Plus className="h-4 w-4 mr-2" />
-          習慣を追加
-        </Button>
+        <div className="flex gap-3">
+          <Button 
+            onClick={() => setIsWizardOpen(true)}
+            className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+          >
+            <Sparkles className="h-4 w-4 mr-2" />
+            楽しく習慣を作成
+          </Button>
+          <Button 
+            variant="outline"
+            onClick={() => setIsFormOpen(true)}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            簡単に追加
+          </Button>
+        </div>
       </div>
 
       {/* デバッグ情報 */}
@@ -446,6 +473,13 @@ export default function Habits() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* 習慣作成ウィザード */}
+      <HabitWizard
+        isOpen={isWizardOpen}
+        onComplete={handleWizardComplete}
+        onClose={() => setIsWizardOpen(false)}
+      />
     </div>
   )
 }

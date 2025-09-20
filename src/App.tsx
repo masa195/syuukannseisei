@@ -2,7 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Layout } from '@/components/layout'
 import { PWAInstallPrompt } from '@/components/pwa-install-prompt'
+import { WelcomeFlow } from '@/components/onboarding/welcome-flow'
 import { Toaster } from 'react-hot-toast'
+import { useState, useEffect } from 'react'
 
 // Pages
 import Dashboard from '@/pages/dashboard'
@@ -15,6 +17,21 @@ import Terms from '@/pages/terms'
 import Privacy from '@/pages/privacy'
 
 function App() {
+  const [showWelcome, setShowWelcome] = useState(false)
+
+  useEffect(() => {
+    // 初回訪問かどうかをチェック
+    const hasSeenWelcome = localStorage.getItem('habitflow-welcome-seen')
+    if (!hasSeenWelcome) {
+      setShowWelcome(true)
+    }
+  }, [])
+
+  const handleWelcomeComplete = () => {
+    localStorage.setItem('habitflow-welcome-seen', 'true')
+    setShowWelcome(false)
+  }
+
   return (
     <ThemeProvider defaultTheme="system" storageKey="habit-tracker-theme">
       <Router basename={import.meta.env.BASE_URL}>
@@ -33,6 +50,12 @@ function App() {
             </Route>
           </Routes>
           <Toaster position="top-right" />
+          
+          {/* ウェルカムフロー */}
+          <WelcomeFlow
+            isOpen={showWelcome}
+            onComplete={handleWelcomeComplete}
+          />
         </div>
       </Router>
     </ThemeProvider>

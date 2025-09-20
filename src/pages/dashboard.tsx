@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Button } from '@/components/ui/button'
 import { useHabitStore } from '@/store/habitStore'
+import { useTownStore } from '@/store/townStore'
 import { formatDate } from '@/lib/utils'
 import { 
   Target, 
@@ -11,10 +12,14 @@ import {
   TrendingUp, 
   Calendar,
   Plus,
-  Flame
+  Flame,
+  Sparkles,
+  Heart,
+  Zap
 } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 export default function Dashboard() {
   const { 
@@ -26,7 +31,12 @@ export default function Dashboard() {
     isHabitCompleted 
   } = useHabitStore()
   
+  const { stats, completeHabit: completeTownHabit } = useTownStore()
+  
   const [currentDate] = useState(new Date())
+  const [showCelebration, setShowCelebration] = useState(false)
+  const [lastCompletionCount, setLastCompletionCount] = useState(0)
+  
   const activeHabits = getActiveHabits()
   const todayProgress = getTodayProgress()
   
@@ -34,32 +44,122 @@ export default function Dashboard() {
   const totalHabits = activeHabits.length
   const completionRate = totalHabits > 0 ? Math.round((completedToday / totalHabits) * 100) : 0
 
+  // 完了数の変化を監視して祝福アニメーションを表示
+  useEffect(() => {
+    if (completedToday > lastCompletionCount && lastCompletionCount > 0) {
+      setShowCelebration(true)
+      setTimeout(() => setShowCelebration(false), 3000)
+    }
+    setLastCompletionCount(completedToday)
+  }, [completedToday, lastCompletionCount])
+
   const handleToggleCompletion = (habitId: string) => {
     const isCompleted = isHabitCompleted(habitId, currentDate)
     if (isCompleted) {
       uncompleteHabit(habitId, currentDate)
     } else {
       completeHabit(habitId, currentDate)
+      completeTownHabit(habitId, 1) // 町の成長にも反映
+      
+      // 祝福メッセージ
+      const habit = activeHabits.find(h => h.id === habitId)
+      if (habit) {
+        toast.success(`🎉 ${habit.name} を完了しました！`, {
+          duration: 3000,
+          icon: '🎊'
+        })
+      }
     }
   }
 
   return (
     <div className="space-y-6">
+      {/* 祝福アニメーション */}
+      <AnimatePresence>
+        {showCelebration && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none"
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, 10, -10, 0]
+              }}
+              transition={{ duration: 0.6, repeat: 2 }}
+              className="text-6xl"
+            >
+              🎉
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ヘッダー */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">ダッシュボード</h1>
-          <p className="text-muted-foreground">
-            {formatDate(currentDate)}
-          </p>
-        </div>
-        <Link to="/habits">
-          <Button>
-            <Plus className="h-4 w-4 mr-2" />
-            習慣を追加
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-6 text-white"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h1 className="text-3xl font-bold flex items-center gap-3">
+              <Sparkles className="h-8 w-8" />
+              今日の進捗
+            </h1>
+            <p className="text-white/90 text-lg">
+              {formatDate(currentDate)} の習慣達成状況
+            </p>
+          </div>
+          <Button 
+            asChild
+            className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+          >
+            <Link to="/app/habits">
+              <Plus className="h-4 w-4 mr-2" />
+              習慣を追加
+            </Link>
           </Button>
-        </Link>
-      </div>
+        </div>
+        
+        {/* 進捗サマリー */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white/10 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Target className="h-5 w-5" />
+              <span className="font-medium">完了率</span>
+            </div>
+            <div className="text-2xl font-bold">{completionRate}%</div>
+            <div className="text-sm text-white/80">
+              {completedToday}/{totalHabits} 習慣完了
+            </div>
+          </div>
+          
+          <div className="bg-white/10 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Zap className="h-5 w-5" />
+              <span className="font-medium">経験値</span>
+            </div>
+            <div className="text-2xl font-bold">{stats.experience}</div>
+            <div className="text-sm text-white/80">
+              レベル {stats.level}
+            </div>
+          </div>
+          
+          <div className="bg-white/10 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Heart className="h-5 w-5" />
+              <span className="font-medium">町の人口</span>
+            </div>
+            <div className="text-2xl font-bold">{stats.population}</div>
+            <div className="text-sm text-white/80">
+              住民が増えています
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* 今日の進捗サマリー */}
       <motion.div
