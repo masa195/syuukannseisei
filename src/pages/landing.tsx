@@ -112,7 +112,7 @@ export default function Landing() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Target className="h-8 w-8 text-blue-600" />
-              <h1 className="text-2xl font-bold">習慣トラッカー</h1>
+              <h1 className="text-2xl font-bold">HabitFlow Pro</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="ghost" asChild>
@@ -165,7 +165,7 @@ export default function Landing() {
           </div>
           
           <h2 className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-            習慣を楽しく継続しよう
+            HabitFlow Pro
           </h2>
           
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -354,7 +354,7 @@ export default function Landing() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Target className="h-8 w-8 text-blue-400" />
-                <h4 className="text-xl font-bold">習慣トラッカー</h4>
+                <h4 className="text-xl font-bold">HabitFlow Pro</h4>
               </div>
               <p className="text-gray-400 leading-relaxed">
                 習慣管理と町育成ゲームを組み合わせた、世界最高の習慣トラッカーアプリ。
@@ -392,7 +392,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 習慣トラッカー. All rights reserved.</p>
+            <p>&copy; 2024 HabitFlow Pro. All rights reserved.</p>
           </div>
         </div>
       </footer>

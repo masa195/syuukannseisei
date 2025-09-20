@@ -10,6 +10,7 @@ export interface Habit {
   createdAt: Date
   updatedAt: Date
   isActive: boolean
+  completions: Date[]
 }
 
 export interface HabitCompletion {

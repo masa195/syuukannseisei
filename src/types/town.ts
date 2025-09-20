@@ -18,6 +18,7 @@ export interface Building {
   happinessBonus: number
   populationBonus: number
   icon: string
+  type: string
 }
 
 export interface Area {
@@ -38,6 +39,9 @@ export interface Resident {
   contribution: number
   unlocked: boolean
   icon: string
+  role: string
+  level: number
+  specialty: string
 }
 
 export interface TownEvent {
@@ -54,6 +58,7 @@ export interface TownEvent {
   duration: number
   active: boolean
   icon: string
+  date: string
 }
 
 export interface SpecialBuilding {

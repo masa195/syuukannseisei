@@ -63,6 +63,7 @@ export default function Habits() {
       addHabit({
         ...formData,
         isActive: true,
+        completions: [],
       })
       toast.success('習慣を作成しました')
     }

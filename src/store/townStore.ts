@@ -35,7 +35,8 @@ const initialBuildings: Building[] = [
     experienceReward: 10,
     happinessBonus: 5,
     populationBonus: 2,
-    icon: '🏠'
+    icon: '🏠',
+    type: '住宅'
   },
   {
     id: 'shop',
@@ -48,7 +49,8 @@ const initialBuildings: Building[] = [
     experienceReward: 15,
     happinessBonus: 10,
     populationBonus: 1,
-    icon: '🏪'
+    icon: '🏪',
+    type: '商業'
   },
   {
     id: 'park',
@@ -61,7 +63,8 @@ const initialBuildings: Building[] = [
     experienceReward: 20,
     happinessBonus: 15,
     populationBonus: 0,
-    icon: '🌳'
+    icon: '🌳',
+    type: '公共'
   }
 ]
 
@@ -103,7 +106,10 @@ const initialResidents: Resident[] = [
     happiness: 80,
     contribution: 10,
     unlocked: true,
-    icon: '👤'
+    icon: '👤',
+    role: '住民',
+    level: 1,
+    specialty: '農業'
   },
   {
     id: 'merchant1',
@@ -112,7 +118,10 @@ const initialResidents: Resident[] = [
     happiness: 70,
     contribution: 15,
     unlocked: false,
-    icon: '👨‍💼'
+    icon: '👨‍💼',
+    role: '商人',
+    level: 2,
+    specialty: '貿易'
   }
 ]
 
@@ -125,7 +134,8 @@ const initialEvents: TownEvent[] = [
     effects: { happiness: 20, experience: 50 },
     duration: 3,
     active: false,
-    icon: '🎉'
+    icon: '🎉',
+    date: new Date().toISOString()
   }
 ]
 
