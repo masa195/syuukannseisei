@@ -2,81 +2,99 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Target, Calendar, BarChart3, Bell, Users, Star, CheckCircle, Zap, Heart, Smartphone } from 'lucide-react'
 import { PaymentModal } from '@/components/payment/payment-modal'
-import { 
-  Target, 
-  BarChart3, 
-  MapPin, 
-  Shield, 
-  ArrowRight, 
-  CheckCircle,
-  Globe,
-  Lock
-} from 'lucide-react'
 
 export default function Landing() {
   const [showPaymentModal, setShowPaymentModal] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState<'free' | 'pro' | 'premium'>('free')
+  const [selectedPlan, setSelectedPlan] = useState<'pro' | 'premium'>('pro')
 
   const features = [
     {
       icon: Target,
-      title: '習慣管理',
-      description: '日々の習慣を効率的に管理し、目標達成をサポートします'
+      title: '習慣トラッキング',
+      description: '毎日の習慣を簡単に記録・管理。進捗を可視化してモチベーションを維持します。',
+      popular: false
     },
     {
       icon: BarChart3,
-      title: '詳細な統計',
-      description: '進捗を可視化し、パフォーマンスを分析します'
+      title: '詳細分析',
+      description: '習慣の達成率や傾向をグラフで分析。データに基づいた改善提案を提供します。',
+      popular: true
     },
     {
-      icon: MapPin,
+      icon: Bell,
+      title: 'スマート通知',
+      description: '最適なタイミングでリマインダーを送信。習慣化を自然にサポートします。',
+      popular: false
+    },
+    {
+      icon: Users,
+      title: 'コミュニティ',
+      description: '同じ目標を持つ仲間とつながり、励まし合いながら習慣化を実現します。',
+      popular: false
+    },
+    {
+      icon: Star,
       title: '町育成ゲーム',
-      description: '習慣完了で町を発展させ、楽しく継続できます'
+      description: '習慣達成で町を発展させよう！建物を建て、住民を増やし、特別な建物を解放します。',
+      popular: true
     },
     {
-      icon: Shield,
-      title: 'プライバシー保護',
-      description: 'データは暗号化され、安全に管理されます'
+      icon: Calendar,
+      title: 'ストリーク管理',
+      description: '連続達成日数を記録し、特別な建物の解放条件を満たしましょう。',
+      popular: false
+    },
+    {
+      icon: Zap,
+      title: 'レベルアップ',
+      description: '習慣達成で経験値を獲得し、新しいエリアを解放して町を拡張します。',
+      popular: false
+    },
+    {
+      icon: Heart,
+      title: 'モチベーション',
+      description: 'ゲーム要素で楽しく継続。習慣化が苦ではなく、楽しみに変わります。',
+      popular: false
     }
   ]
 
   const plans = [
     {
-      id: 'free',
       name: '無料プラン',
       price: 0,
       features: [
-        '基本的な習慣管理',
-        '7日間の統計',
-        '基本的な町育成',
-        'コミュニティサポート'
+        '基本的な習慣トラッキング',
+        '7日間のデータ保持',
+        '基本的な通知機能',
+        '町育成ゲーム（制限あり）'
       ],
       popular: false
     },
     {
-      id: 'pro',
       name: 'プロプラン',
       price: 980,
       features: [
-        '無制限の習慣管理',
-        '詳細な統計と分析',
-        '高度な町育成機能',
-        '優先サポート',
-        'データエクスポート'
+        '無制限の習慣トラッキング',
+        '無制限のデータ保持',
+        '詳細な分析レポート',
+        'カスタム通知設定',
+        '町育成ゲーム（フル機能）',
+        '優先サポート'
       ],
       popular: true
     },
     {
-      id: 'premium',
       name: 'プレミアムプラン',
       price: 1980,
       features: [
         'プロプランの全機能',
-        'AI パーソナルコーチ',
         'チーム機能',
         'カスタムテーマ',
-        '24/7 サポート'
+        '高度な分析ツール',
+        'API連携',
+        '専任サポート'
       ],
       popular: false
     }
@@ -138,11 +156,14 @@ export default function Landing() {
             <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <a href="/app">
                 無料で始める
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Zap className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="px-8 py-4 text-lg font-semibold border-2 hover:bg-gray-50 transition-all duration-300" asChild>
-              <a href="#features">機能を見る</a>
+            <Button size="lg" variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold transition-all duration-300" asChild>
+              <a href="/app/town">
+                町を見る
+                <Star className="ml-2 h-5 w-5" />
+              </a>
             </Button>
           </div>
           
@@ -197,91 +218,102 @@ export default function Landing() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <Badge className="mb-4">新機能</Badge>
-              <h3 className="text-4xl font-bold mb-6">町育成ゲーム</h3>
-              <p className="text-lg text-muted-foreground mb-6">
-                習慣を完了するたびに町が発展します。建物を建て、住民を増やし、
-                美しい町を作り上げましょう。ゲーム要素で楽しく習慣を継続できます。
+              <h3 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                町育成ゲーム
+              </h3>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                習慣を達成するたびに町が発展します。建物を建て、住民を増やし、特別な建物を解放して、あなただけの理想の町を作り上げましょう。
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span>習慣完了で建物が増える</span>
+                  <CheckCircle className="h-6 w-6 text-green-500" />
+                  <span className="text-gray-700">習慣達成で建物が増える</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span>レベルアップで新しいエリアが解放</span>
+                  <CheckCircle className="h-6 w-6 text-green-500" />
+                  <span className="text-gray-700">レベルアップで新しいエリアが解放</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span>連続達成で特別な建物が出現</span>
+                  <CheckCircle className="h-6 w-6 text-green-500" />
+                  <span className="text-gray-700">ストリークで特別な建物が出現</span>
                 </div>
               </div>
+              <Button size="lg" className="mt-8 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300" asChild>
+                <a href="/app/town">
+                  町を見る
+                  <Star className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
             </div>
             <div className="relative">
-              <Card className="p-8">
-                <div className="text-center">
-                  <MapPin className="h-16 w-16 mx-auto text-green-600 mb-4" />
-                  <h4 className="text-xl font-semibold mb-2">あなたの町</h4>
-                  <p className="text-muted-foreground mb-4">
-                    習慣を続けて美しい町を作りましょう
-                  </p>
-                  <div className="grid grid-cols-3 gap-2 mb-4">
-                    <div className="h-8 bg-green-200 rounded"></div>
-                    <div className="h-8 bg-blue-200 rounded"></div>
-                    <div className="h-8 bg-yellow-200 rounded"></div>
-                    <div className="h-8 bg-purple-200 rounded"></div>
-                    <div className="h-8 bg-red-200 rounded"></div>
-                    <div className="h-8 bg-pink-200 rounded"></div>
-                  </div>
-                  <Button asChild>
-                    <a href="/app/town">町を見る</a>
-                  </Button>
+              <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-gradient-to-r from-green-400 to-blue-400">
+                <div className="text-center mb-6">
+                  <h4 className="text-2xl font-bold text-gray-800 mb-2">あなたの町</h4>
+                  <p className="text-gray-600">習慣達成で町を発展させよう！</p>
                 </div>
-              </Card>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-green-100 rounded-lg p-4 text-center">
+                    <div className="text-2xl mb-2">🏠</div>
+                    <div className="text-sm font-semibold">住宅</div>
+                    <div className="text-xs text-gray-600">5棟</div>
+                  </div>
+                  <div className="bg-blue-100 rounded-lg p-4 text-center">
+                    <div className="text-2xl mb-2">🏪</div>
+                    <div className="text-sm font-semibold">商店</div>
+                    <div className="text-xs text-gray-600">3棟</div>
+                  </div>
+                  <div className="bg-purple-100 rounded-lg p-4 text-center">
+                    <div className="text-2xl mb-2">🏛️</div>
+                    <div className="text-sm font-semibold">公共施設</div>
+                    <div className="text-xs text-gray-600">2棟</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 料金プランセクション */}
-      <section className="py-20 bg-white">
+      <section id="pricing" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h3 className="text-3xl font-bold mb-4">料金プラン</h3>
-            <p className="text-xl text-muted-foreground">
-              あなたに最適なプランを選んでください
+            <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">料金プラン</h3>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              あなたに最適なプランを選んで、習慣化の旅を始めましょう。
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {plans.map((plan) => (
-              <Card key={plan.id} className={`relative ${plan.popular ? 'ring-2 ring-blue-500' : ''}`}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {plans.map((plan, index) => (
+              <Card key={index} className={`relative ${plan.popular ? 'border-2 border-blue-500 shadow-xl scale-105' : 'border shadow-lg'} hover:shadow-xl transition-all duration-300`}>
                 {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    人気
-                  </Badge>
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-blue-500 text-white px-4 py-1">人気</Badge>
+                  </div>
                 )}
-                <CardHeader className="text-center">
-                  <CardTitle>{plan.name}</CardTitle>
-                  <div className="text-3xl font-bold">
-                    ¥{plan.price.toLocaleString()}
-                    {plan.price > 0 && <span className="text-lg text-muted-foreground">/月</span>}
+                <CardHeader className="text-center pb-8">
+                  <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold">¥{plan.price.toLocaleString()}</span>
+                    {plan.price > 0 && <span className="text-gray-500">/月</span>}
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
-                        <span className="text-sm">{feature}</span>
+                  <ul className="space-y-4 mb-8">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center space-x-3">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <Button 
-                    className="w-full" 
-                    variant={plan.popular ? 'default' : 'outline'}
+                    className={`w-full ${plan.popular ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white' : 'bg-gray-900 hover:bg-gray-800 text-white'}`}
                     onClick={() => {
-                      setSelectedPlan(plan.id as any)
-                      setShowPaymentModal(true)
+                      if (plan.price > 0) {
+                        setSelectedPlan(plan.name === 'プロプラン' ? 'pro' : 'premium')
+                        setShowPaymentModal(true)
+                      }
                     }}
                   >
                     {plan.price === 0 ? '無料で始める' : 'プランを選択'}
@@ -293,89 +325,48 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* セキュリティセクション */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-4">セキュリティとプライバシー</h3>
-            <p className="text-xl text-muted-foreground">
-              あなたのデータは安全に保護されます
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center">
-              <CardHeader>
-                <Lock className="h-12 w-12 mx-auto text-green-600 mb-4" />
-                <CardTitle>データ暗号化</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  すべてのデータは業界標準の暗号化技術で保護されています
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="text-center">
-              <CardHeader>
-                <Shield className="h-12 w-12 mx-auto text-blue-600 mb-4" />
-                <CardTitle>プライバシー保護</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  個人情報は第三者と共有されることはありません
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="text-center">
-              <CardHeader>
-                <Globe className="h-12 w-12 mx-auto text-purple-600 mb-4" />
-                <CardTitle>GDPR準拠</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  国際的なプライバシー規制に完全準拠しています
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* フッター */}
-      <footer className="py-12 bg-gray-900 text-white">
+      <footer className="bg-gray-900 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Target className="h-6 w-6" />
-                <h4 className="text-lg font-semibold">習慣トラッカー</h4>
+                <Target className="h-8 w-8 text-blue-400" />
+                <h4 className="text-xl font-bold">習慣トラッカー</h4>
               </div>
-              <p className="text-gray-400">
-                習慣管理を革新するアプリ
+              <p className="text-gray-400 leading-relaxed">
+                習慣管理と町育成ゲームを組み合わせた、世界最高の習慣トラッカーアプリ。
               </p>
             </div>
             <div>
-              <h5 className="font-semibold mb-4">製品</h5>
+              <h5 className="text-lg font-semibold mb-4">機能</h5>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/app" className="hover:text-white">アプリ</a></li>
-                <li><a href="/app/town" className="hover:text-white">町育成</a></li>
-                <li><a href="#features" className="hover:text-white">機能</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">習慣トラッキング</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">町育成ゲーム</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">詳細分析</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">スマート通知</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="font-semibold mb-4">サポート</h5>
+              <h5 className="text-lg font-semibold mb-4">サポート</h5>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/terms" className="hover:text-white">利用規約</a></li>
-                <li><a href="/privacy" className="hover:text-white">プライバシー</a></li>
-                <li><a href="#" className="hover:text-white">ヘルプ</a></li>
+                <li><a href="/terms" className="hover:text-white transition-colors">利用規約</a></li>
+                <li><a href="/privacy" className="hover:text-white transition-colors">プライバシーポリシー</a></li>
+                <li><a href="/app" className="hover:text-white transition-colors">アプリを開く</a></li>
+                <li><a href="/app/town" className="hover:text-white transition-colors">町を見る</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="font-semibold mb-4">会社</h5>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">会社概要</a></li>
-                <li><a href="#" className="hover:text-white">採用情報</a></li>
-                <li><a href="#" className="hover:text-white">お問い合わせ</a></li>
-              </ul>
+              <h5 className="text-lg font-semibold mb-4">お問い合わせ</h5>
+              <p className="text-gray-400 mb-4">
+                ご質問やご要望がございましたら、お気軽にお問い合わせください。
+              </p>
+              <div className="flex space-x-4">
+                <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-800">
+                  <Smartphone className="h-4 w-4 mr-2" />
+                  アプリ
+                </Button>
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
