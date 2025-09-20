@@ -18,6 +18,9 @@ interface TownState {
   triggerEvent: (eventId: string) => void
   getUnlockedAreas: () => Area[]
   getSpecialBuildings: () => SpecialBuilding[]
+  checkBuildingUnlocks: () => void
+  checkAreaUnlocks: () => void
+  checkSpecialBuildingUnlocks: () => void
 }
 
 const initialBuildings: Building[] = [
@@ -155,7 +158,7 @@ export const useTownStore = create<TownState>((set, get) => ({
   events: initialEvents,
   specialBuildings: initialSpecialBuildings,
 
-  completeHabit: (habitId: string, streak: number) => {
+  completeHabit: (_habitId: string, streak: number) => {
     set((state) => {
       const experienceGain = 10 + (streak * 2)
       const newExperience = state.stats.experience + experienceGain
