@@ -29,11 +29,38 @@ export default function Privacy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">3. 個人情報の収集方法</h2>
             <p className="text-muted-foreground">
-              当社は、ユーザーが利用登録をする際に氏名、生年月日、住所、電話番号、メールアドレス、
-              銀行口座番号、クレジットカード番号、運転免許証番号などの個人情報をお尋ねすることがあります。
-              また、ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を、
-              当社の提携先（情報提供元、広告主、広告配信先などを含みます。以下、「提携先」）などから収集することがあります。
+              当社は、以下の方法で個人情報を収集します。
             </p>
+            <div className="mt-4 space-y-3">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium mb-2">直接収集</h3>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• アカウント登録時の情報入力</li>
+                  <li>• プロフィール設定時の情報入力</li>
+                  <li>• お問い合わせフォームからの情報</li>
+                  <li>• アンケートやフィードバックの提供</li>
+                </ul>
+              </div>
+              
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h3 className="font-medium mb-2">自動収集</h3>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• アプリの使用状況データ（習慣の記録、完了状況等）</li>
+                  <li>• デバイス情報（OS、ブラウザ、IPアドレス等）</li>
+                  <li>• アクセスログ（ページビュー、滞在時間等）</li>
+                  <li>• エラーログ（アプリの不具合情報等）</li>
+                </ul>
+              </div>
+              
+              <div className="bg-yellow-50 p-4 rounded-lg">
+                <h3 className="font-medium mb-2">第三者からの収集</h3>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• PayPal決済システムからの決済情報</li>
+                  <li>• ソーシャルログイン（Google、Apple等）からの情報</li>
+                  <li>• 分析ツール（Google Analytics等）からの情報</li>
+                </ul>
+              </div>
+            </div>
           </section>
 
           <section>
@@ -128,8 +155,9 @@ export default function Privacy() {
             </p>
             <div className="mt-4 p-4 bg-muted rounded-lg">
               <p className="text-sm">
-                <strong>習慣トラッカーアプリ プライバシー担当</strong><br />
-                メールアドレス: privacy@habit-tracker.com<br />
+                <strong>HabitFlow Pro プライバシー担当</strong><br />
+                メールアドレス: privacy@habitflow-pro.com<br />
+                電話番号: 03-1234-5678<br />
                 受付時間: 平日 9:00-18:00
               </p>
             </div>
@@ -138,7 +166,7 @@ export default function Privacy() {
           <div className="pt-6 border-t">
             <p className="text-sm text-muted-foreground">
               制定日：2024年1月1日<br />
-              最終更新日：2024年1月1日
+              最終更新日：2024年12月19日
             </p>
           </div>
         </CardContent>
