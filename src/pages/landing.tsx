@@ -2,12 +2,16 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Target, Calendar, BarChart3, Bell, Users, Star, CheckCircle, Zap, Heart, Smartphone } from 'lucide-react'
+import { Target, Calendar, BarChart3, Bell, Users, Star, CheckCircle, Zap, Heart, Smartphone, LogIn } from 'lucide-react'
 import { PaymentModal } from '@/components/payment/payment-modal'
+import { AuthModal } from '@/components/auth/auth-modal'
+import { useAuthStore } from '@/store/authStore'
 
 export default function Landing() {
   const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [showAuthModal, setShowAuthModal] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<'pro' | 'premium'>('pro')
+  const { user, isAuthenticated, logout } = useAuthStore()
 
   const features = [
     {
@@ -117,9 +121,27 @@ export default function Landing() {
               <Button variant="ghost" asChild>
                 <a href="/privacy">プライバシー</a>
               </Button>
-              <Button asChild>
-                <a href="/app">アプリを開く</a>
-              </Button>
+              {isAuthenticated ? (
+                <div className="flex items-center space-x-4">
+                  <span className="text-sm text-gray-600">こんにちは、{user?.name}さん</span>
+                  <Button variant="outline" onClick={logout}>
+                    ログアウト
+                  </Button>
+                  <Button asChild>
+                    <a href="/app">アプリを開く</a>
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <Button variant="outline" onClick={() => setShowAuthModal(true)}>
+                    <LogIn className="h-4 w-4 mr-2" />
+                    ログイン
+                  </Button>
+                  <Button asChild>
+                    <a href="/app">アプリを開く</a>
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -374,6 +396,13 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+
+      {/* 認証モーダル */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        defaultMode="login"
+      />
 
       {/* 決済モーダル */}
       <PaymentModal

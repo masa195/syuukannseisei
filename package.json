@@ -12,6 +12,11 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@paypal/paypal-js": "^8.4.2",
+    "@paypal/react-paypal-js": "^8.9.1",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
@@ -21,12 +26,14 @@
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.63.0",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.20.1",
     "recharts": "^2.8.0",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
-    "zustand": "^4.4.7"
+    "zod": "^4.1.9",
+    "zustand": "^4.5.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
