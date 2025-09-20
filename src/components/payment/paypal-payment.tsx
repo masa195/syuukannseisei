@@ -111,7 +111,7 @@ export function PayPalPayment({ amount, planName, onSuccess, onError }: PayPalPa
       <CardContent>
         <PayPalScriptProvider
           options={{
-            clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || 'demo',
+            clientId: 'AfvS6PX7XWQ6aPx7rCjiN',
             currency: 'JPY',
             intent: 'capture'
           }}
