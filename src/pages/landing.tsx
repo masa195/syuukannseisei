@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Target, Calendar, BarChart3, Bell, Users, Star, CheckCircle, Zap, Heart, Smartphone, LogIn, Sparkles, MapPin, ArrowRight } from 'lucide-react'
+import { Target, Calendar, BarChart3, Bell, Users, Star, CheckCircle, Zap, Heart, Smartphone, LogIn, Sparkles, MapPin, ArrowRight, Play } from 'lucide-react'
 import { PaymentModal } from '@/components/payment/payment-modal'
 import { AuthModal } from '@/components/auth/auth-modal'
 import { useAuthStore } from '@/store/authStore'
+import { motion } from 'framer-motion'
 
 export default function Landing() {
   const [showPaymentModal, setShowPaymentModal] = useState(false)
@@ -176,61 +177,110 @@ export default function Landing() {
 
       {/* ヒーローセクション */}
       <section className="relative py-20 overflow-hidden">
-        {/* 背景グラデーション */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"></div>
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundRepeat: 'repeat'
-          }}></div>
+        {/* 動的背景 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600">
+          <div className="absolute inset-0 opacity-30">
+          <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent"></div>
+        </div>
         </div>
         
-        <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-6">
-            <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-            新機能：町育成ゲームが追加されました！
-          </div>
+        {/* 浮遊する要素 */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-bounce"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-yellow-400/20 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-pink-400/20 rounded-full animate-ping"></div>
+        <div className="absolute top-1/2 right-10 w-8 h-8 bg-green-400/20 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+        
+        <div className="relative container mx-auto px-4 text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-8 border border-white/20"
+          >
+            <Sparkles className="w-4 h-4 mr-2 animate-spin" />
+            <span className="animate-pulse">新機能：町育成ゲームが追加されました！</span>
+          </motion.div>
           
-          <h2 className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent"
+          >
             HabitFlow Pro
-          </h2>
+          </motion.h2>
           
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed"
+          >
             習慣管理と町育成ゲームを組み合わせた、世界最高の習慣トラッカーアプリ。
             <br />
             目標達成を楽しく、効果的にサポートします。
-          </p>
+          </motion.p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300" asChild>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          >
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
+              asChild
+            >
               <a href="/app">
+                <Play className="mr-2 h-5 w-5" />
                 無料で始める
                 <Zap className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold transition-all duration-300" asChild>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-white/50 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105" 
+              asChild
+            >
               <a href="/app/town">
+                <MapPin className="mr-2 h-5 w-5" />
                 町を見る
                 <Star className="ml-2 h-5 w-5" />
               </a>
             </Button>
-          </div>
+          </motion.div>
           
           {/* 統計情報 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">10,000+</div>
-              <div className="text-gray-600">アクティブユーザー</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">95%</div>
-              <div className="text-gray-600">習慣達成率</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-indigo-600 mb-2">4.9★</div>
-              <div className="text-gray-600">ユーザー評価</div>
-            </div>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          >
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+            >
+              <div className="text-4xl font-bold text-yellow-400 mb-2">10,000+</div>
+              <div className="text-white/80">アクティブユーザー</div>
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+            >
+              <div className="text-4xl font-bold text-green-400 mb-2">95%</div>
+              <div className="text-white/80">習慣達成率</div>
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+            >
+              <div className="text-4xl font-bold text-pink-400 mb-2">4.9★</div>
+              <div className="text-white/80">ユーザー評価</div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 

@@ -14,7 +14,8 @@ import {
   Calendar,
   CheckCircle2,
   X,
-  Sparkles
+  Sparkles,
+  Target
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
@@ -118,30 +119,49 @@ export default function Habits() {
   return (
     <div className="space-y-6">
       {/* ヘッダー */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">習慣管理</h1>
-          <p className="text-muted-foreground">
-            習慣を作成・編集して、目標達成をサポートします
-          </p>
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-2xl p-6 text-white overflow-hidden"
+      >
+        {/* 背景アニメーション */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent"></div>
         </div>
-        <div className="flex gap-3">
-          <Button 
-            onClick={() => setIsWizardOpen(true)}
-            className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
-          >
-            <Sparkles className="h-4 w-4 mr-2" />
-            楽しく習慣を作成
-          </Button>
-          <Button 
-            variant="outline"
-            onClick={() => setIsFormOpen(true)}
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            簡単に追加
-          </Button>
+        
+        {/* 浮遊する要素 */}
+        <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-4 left-4 w-6 h-6 bg-yellow-400/30 rounded-full animate-bounce"></div>
+        
+        <div className="relative z-10 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold flex items-center gap-3">
+              <Target className="h-8 w-8" />
+              習慣管理
+            </h1>
+            <p className="text-white/90">
+              習慣を作成・編集して、目標達成をサポートします
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Button 
+              onClick={() => setIsWizardOpen(true)}
+              className="bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm hover:scale-105 transition-all duration-300"
+            >
+              <Sparkles className="h-4 w-4 mr-2" />
+              楽しく習慣を作成
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => setIsFormOpen(true)}
+              className="bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm hover:scale-105 transition-all duration-300"
+            >
+              <Plus className="h-4 w-4 mr-2" />
+              簡単に追加
+            </Button>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* デバッグ情報 */}
       <div className="bg-blue-50 p-4 rounded-lg">

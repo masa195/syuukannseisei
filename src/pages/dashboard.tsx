@@ -101,74 +101,114 @@ export default function Dashboard() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-6 text-white"
+        className="relative bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-2xl p-6 text-white overflow-hidden"
       >
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold flex items-center gap-3">
-              <Sparkles className="h-8 w-8" />
-              今日の進捗
-            </h1>
-            <p className="text-white/90 text-lg">
-              {formatDate(currentDate)} の習慣達成状況
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <Button 
-              asChild
-              className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-            >
-              <Link to="/app/habits">
-                <Plus className="h-4 w-4 mr-2" />
-                習慣を追加
-              </Link>
-            </Button>
-            <Button 
-              asChild
-              variant="outline"
-              className="bg-white/10 hover:bg-white/20 text-white border-white/30"
-            >
-              <Link to="/app/features">
-                <Sparkles className="h-4 w-4 mr-2" />
-                新機能を見る
-              </Link>
-            </Button>
-          </div>
+        {/* 背景アニメーション */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent"></div>
         </div>
         
-        {/* 進捗サマリー */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white/10 rounded-lg p-4">
+        {/* 浮遊する要素 */}
+        <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-4 left-4 w-6 h-6 bg-yellow-400/30 rounded-full animate-bounce"></div>
+        
+        <div className="relative z-10">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-3xl font-bold flex items-center gap-3">
+                <Sparkles className="h-8 w-8" />
+                今日の進捗
+              </h1>
+              <p className="text-white/90 text-lg">
+                {formatDate(currentDate)} の習慣達成状況
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button 
+                asChild
+                className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+              >
+                <Link to="/app/habits">
+                  <Plus className="h-4 w-4 mr-2" />
+                  習慣を追加
+                </Link>
+              </Button>
+              <Button 
+                asChild
+                variant="outline"
+                className="bg-white/10 hover:bg-white/20 text-white border-white/30"
+              >
+                <Link to="/app/features">
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  新機能を見る
+                </Link>
+              </Button>
+            </div>
+          </div>
+        
+          {/* 進捗サマリー */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300"
+          >
             <div className="flex items-center gap-2 mb-2">
-              <Target className="h-5 w-5" />
+              <Target className="h-5 w-5 text-blue-300" />
               <span className="font-medium">完了率</span>
             </div>
-            <div className="text-2xl font-bold">{completionRate}%</div>
+            <div className="text-3xl font-bold text-blue-300">{completionRate}%</div>
             <div className="text-sm text-white/80">
               {completedToday}/{totalHabits} 習慣完了
             </div>
-          </div>
+            <div className="w-full bg-white/20 rounded-full h-2 mt-2">
+              <div 
+                className="bg-blue-400 h-2 rounded-full transition-all duration-500"
+                style={{ width: `${completionRate}%` }}
+              ></div>
+            </div>
+          </motion.div>
           
-          <div className="bg-white/10 rounded-lg p-4">
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300"
+          >
             <div className="flex items-center gap-2 mb-2">
-              <Zap className="h-5 w-5" />
+              <Zap className="h-5 w-5 text-yellow-300" />
               <span className="font-medium">経験値</span>
             </div>
-            <div className="text-2xl font-bold">{stats.experience}</div>
+            <div className="text-3xl font-bold text-yellow-300">{stats.experience}</div>
             <div className="text-sm text-white/80">
               レベル {stats.level}
             </div>
-          </div>
+            <div className="w-full bg-white/20 rounded-full h-2 mt-2">
+              <div 
+                className="bg-yellow-400 h-2 rounded-full transition-all duration-500"
+                style={{ width: `${(stats.experience % 100)}%` }}
+              ></div>
+            </div>
+          </motion.div>
           
-          <div className="bg-white/10 rounded-lg p-4">
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300"
+          >
             <div className="flex items-center gap-2 mb-2">
-              <Heart className="h-5 w-5" />
+              <Heart className="h-5 w-5 text-pink-300" />
               <span className="font-medium">町の人口</span>
             </div>
-            <div className="text-2xl font-bold">{stats.population}</div>
+            <div className="text-3xl font-bold text-pink-300">{stats.population}</div>
             <div className="text-sm text-white/80">
               住民が増えています
             </div>
+            <div className="flex gap-1 mt-2">
+              {[...Array(5)].map((_, i) => (
+                <div 
+                  key={i}
+                  className={`w-2 h-2 rounded-full ${i < Math.min(stats.population / 2, 5) ? 'bg-pink-400' : 'bg-white/20'}`}
+                ></div>
+              ))}
+            </div>
+          </motion.div>
           </div>
         </div>
       </motion.div>
