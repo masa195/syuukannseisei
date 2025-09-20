@@ -8,7 +8,8 @@ import {
   Settings, 
   MapPin,
   Menu,
-  X
+  X,
+  Sparkles
 } from 'lucide-react'
 
 export function Layout() {
@@ -20,6 +21,7 @@ export function Layout() {
     { name: '習慣管理', href: '/app/habits', icon: Target },
     { name: '統計', href: '/app/statistics', icon: BarChart3 },
     { name: '町育成', href: '/app/town', icon: MapPin },
+    { name: '新機能', href: '/app/features', icon: Sparkles },
     { name: '設定', href: '/app/settings', icon: Settings },
   ]
 

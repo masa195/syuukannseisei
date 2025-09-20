@@ -113,15 +113,27 @@ export default function Dashboard() {
               {formatDate(currentDate)} の習慣達成状況
             </p>
           </div>
-          <Button 
-            asChild
-            className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-          >
-            <Link to="/app/habits">
-              <Plus className="h-4 w-4 mr-2" />
-              習慣を追加
-            </Link>
-          </Button>
+          <div className="flex gap-3">
+            <Button 
+              asChild
+              className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+            >
+              <Link to="/app/habits">
+                <Plus className="h-4 w-4 mr-2" />
+                習慣を追加
+              </Link>
+            </Button>
+            <Button 
+              asChild
+              variant="outline"
+              className="bg-white/10 hover:bg-white/20 text-white border-white/30"
+            >
+              <Link to="/app/features">
+                <Sparkles className="h-4 w-4 mr-2" />
+                新機能を見る
+              </Link>
+            </Button>
+          </div>
         </div>
         
         {/* 進捗サマリー */}

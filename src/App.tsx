@@ -12,6 +12,7 @@ import Habits from '@/pages/habits'
 import Statistics from '@/pages/statistics'
 import Settings from '@/pages/settings'
 import Town from '@/pages/town'
+import Features from '@/pages/features'
 import Landing from '@/pages/landing'
 import Terms from '@/pages/terms'
 import Privacy from '@/pages/privacy'
@@ -47,6 +48,7 @@ function App() {
               <Route path="statistics" element={<Statistics />} />
               <Route path="settings" element={<Settings />} />
               <Route path="town" element={<Town />} />
+              <Route path="features" element={<Features />} />
             </Route>
           </Routes>
           <Toaster position="top-right" />
