@@ -45,9 +45,15 @@ export const useHabitStore = create<HabitStore>()(
           updatedAt: new Date(),
         }
         
-        set((state) => ({
-          habits: [...state.habits, newHabit],
-        }))
+        console.log('習慣ストア: 新しい習慣を追加', newHabit)
+        
+        set((state) => {
+          const newHabits = [...state.habits, newHabit]
+          console.log('習慣ストア: 更新後の習慣数', newHabits.length)
+          return {
+            habits: newHabits,
+          }
+        })
       },
 
       updateHabit: (id, updates) => {

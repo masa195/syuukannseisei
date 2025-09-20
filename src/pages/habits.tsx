@@ -66,6 +66,7 @@ export default function Habits() {
         completions: [],
       })
       toast.success('習慣を作成しました')
+      console.log('習慣を追加しました:', formData.name)
     }
 
     setFormData(initialFormData)
@@ -113,6 +114,18 @@ export default function Habits() {
           <Plus className="h-4 w-4 mr-2" />
           習慣を追加
         </Button>
+      </div>
+
+      {/* デバッグ情報 */}
+      <div className="bg-blue-50 p-4 rounded-lg">
+        <p className="text-sm text-blue-600">
+          デバッグ: 習慣数 = {habits.length}
+        </p>
+        {habits.length === 0 && (
+          <p className="text-sm text-blue-600 mt-2">
+            習慣がありません。右上の「習慣を追加」ボタンから追加してください。
+          </p>
+        )}
       </div>
 
       {/* 習慣一覧 */}
