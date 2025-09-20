@@ -1,24 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=./" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>リダイレクト中...</title>
-    <script>
-      // GitHub Pages SPA ルーター対策
-      (function() {
-        var redirect = sessionStorage.getItem('redirect') || location.pathname;
-        if (redirect && redirect !== '/') {
-          sessionStorage.removeItem('redirect');
-          location.replace('/' + (redirect.startsWith('/') ? redirect.slice(1) : redirect));
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <p>ページを読み込み直しています...</p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>習慣トラッカー</title>
+  <script>
+    // GitHub Pages SPA ルーティング対応
+    (function() {
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    })();
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
 </html>
 
 

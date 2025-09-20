@@ -94,13 +94,13 @@ export default function Landing() {
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="ghost" asChild>
-                <a href="/terms">利用規約</a>
+                <a href="/syuukannseisei/terms">利用規約</a>
               </Button>
               <Button variant="ghost" asChild>
-                <a href="/privacy">プライバシー</a>
+                <a href="/syuukannseisei/privacy">プライバシー</a>
               </Button>
               <Button asChild>
-                <a href="/app">アプリを開く</a>
+                <a href="/syuukannseisei/app">アプリを開く</a>
               </Button>
             </div>
           </div>
@@ -322,16 +322,16 @@ export default function Landing() {
             <div>
               <h5 className="font-semibold mb-4">製品</h5>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/app" className="hover:text-white">アプリ</a></li>
-                <li><a href="/app/town" className="hover:text-white">町育成</a></li>
+                <li><a href="/syuukannseisei/app" className="hover:text-white">アプリ</a></li>
+                <li><a href="/syuukannseisei/app/town" className="hover:text-white">町育成</a></li>
                 <li><a href="#features" className="hover:text-white">機能</a></li>
               </ul>
             </div>
             <div>
               <h5 className="font-semibold mb-4">サポート</h5>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/terms" className="hover:text-white">利用規約</a></li>
-                <li><a href="/privacy" className="hover:text-white">プライバシー</a></li>
+                <li><a href="/syuukannseisei/terms" className="hover:text-white">利用規約</a></li>
+                <li><a href="/syuukannseisei/privacy" className="hover:text-white">プライバシー</a></li>
                 <li><a href="#" className="hover:text-white">ヘルプ</a></li>
               </ul>
             </div>
