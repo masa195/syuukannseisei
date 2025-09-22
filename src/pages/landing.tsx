@@ -11,7 +11,6 @@ import { motion } from 'framer-motion'
 export default function Landing() {
   const [showPaymentModal, setShowPaymentModal] = useState(false)
   const [showAuthModal, setShowAuthModal] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState<'pro'>('pro')
   const { user, isAuthenticated, logout } = useAuthStore()
 
   const features = [
@@ -444,7 +443,6 @@ export default function Landing() {
                     className={`w-full ${plan.popular ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white' : 'bg-gray-900 hover:bg-gray-800 text-white'}`}
                     onClick={() => {
                       if (plan.price > 0) {
-                        setSelectedPlan('pro')
                         setShowPaymentModal(true)
                       }
                     }}
