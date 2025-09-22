@@ -168,12 +168,19 @@ export default function Habits() {
         <p className="text-sm text-blue-600">
           デバッグ: 習慣数 = {habits.length}
         </p>
-        {habits.length === 0 && (
-          <p className="text-sm text-blue-600 mt-2">
-            習慣がありません。右上の「習慣を追加」ボタンから追加してください。
-          </p>
-        )}
       </div>
+
+      {/* 空状態 */}
+      {habits.length === 0 && (
+        <div className="rounded-2xl border p-8 bg-white text-center">
+          <h3 className="text-xl font-semibold">最初の習慣を作ってみましょう！</h3>
+          <p className="text-gray-600 mt-2">ウィザードを使えば、色やアイコンも選べて楽しい！</p>
+          <div className="mt-4 flex justify-center gap-3">
+            <Button onClick={() => setIsWizardOpen(true)} className="bg-gradient-to-r from-blue-500 to-purple-500">ウィザードで作成</Button>
+            <Button variant="outline" onClick={() => setIsFormOpen(true)}>フォームで追加</Button>
+          </div>
+        </div>
+      )}
 
       {/* 習慣一覧 */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

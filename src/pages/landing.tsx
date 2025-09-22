@@ -519,6 +519,42 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* かんたん3ステップ */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold mb-3">かんたん3ステップでスタート</h3>
+            <p className="text-gray-600">誰でも迷わず、今日から習慣づくりを楽しく。</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-2xl border p-6">
+              <div className="text-sm text-blue-600 font-semibold mb-2">STEP 1</div>
+              <h4 className="text-lg font-semibold">ログイン・登録</h4>
+              <p className="text-sm text-gray-600 mt-2">1分で完了。すぐに習慣づくりを始められます。</p>
+              <div className="mt-4">
+                <a href="/app" className="text-blue-600 hover:underline">今すぐはじめる</a>
+              </div>
+            </div>
+            <div className="rounded-2xl border p-6">
+              <div className="text-sm text-blue-600 font-semibold mb-2">STEP 2</div>
+              <h4 className="text-lg font-semibold">習慣を作る</h4>
+              <p className="text-sm text-gray-600 mt-2">ウィザードで楽しく作成。色やアイコンも選べます。</p>
+              <div className="mt-4">
+                <a href="/app/habits" className="text-blue-600 hover:underline">習慣を作成</a>
+              </div>
+            </div>
+            <div className="rounded-2xl border p-6">
+              <div className="text-sm text-blue-600 font-semibold mb-2">STEP 3</div>
+              <h4 className="text-lg font-semibold">毎日チェック</h4>
+              <p className="text-sm text-gray-600 mt-2">ダッシュボードで達成をタップ。町もどんどん発展！</p>
+              <div className="mt-4">
+                <a href="/app" className="text-blue-600 hover:underline">ダッシュボードへ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* フッター */}
       <footer className="bg-gray-900 text-white py-16">
         <div className="container mx-auto px-4">
