@@ -471,6 +471,54 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* 法的文書まとめ */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">法的文書まとめ</h3>
+            <p className="text-gray-600">HabitFlow Proのご利用に関する重要な情報をこちらに集約しました。</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="/terms" className="group block rounded-2xl border p-6 bg-white hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-lg font-semibold">利用規約</h4>
+                  <p className="text-sm text-gray-500 mt-1">サービスのご利用条件</p>
+                </div>
+                <span className="text-blue-600 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+            <a href="/privacy" className="group block rounded-2xl border p-6 bg-white hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-lg font-semibold">プライバシーポリシー</h4>
+                  <p className="text-sm text-gray-500 mt-1">個人情報の取扱い</p>
+                </div>
+                <span className="text-blue-600 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+            <a href="/terms#退会" className="group block rounded-2xl border p-6 bg-white hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-lg font-semibold">退会手続き</h4>
+                  <p className="text-sm text-gray-500 mt-1">手順と注意事項</p>
+                </div>
+                <span className="text-blue-600 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+            <a href="/terms#料金" className="group block rounded-2xl border p-6 bg-white hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-lg font-semibold">料金詳細</h4>
+                  <p className="text-sm text-gray-500 mt-1">プランとお支払い</p>
+                </div>
+                <span className="text-blue-600 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* フッター */}
       <footer className="bg-gray-900 text-white py-16">
         <div className="container mx-auto px-4">
