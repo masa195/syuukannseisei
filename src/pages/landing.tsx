@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 export default function Landing() {
   const [showPaymentModal, setShowPaymentModal] = useState(false)
   const [showAuthModal, setShowAuthModal] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState<'pro' | 'premium'>('pro')
+  const [selectedPlan, setSelectedPlan] = useState<'pro'>('pro')
   const { user, isAuthenticated, logout } = useAuthStore()
 
   const features = [
@@ -89,19 +89,6 @@ export default function Landing() {
         '優先サポート'
       ],
       popular: true
-    },
-    {
-      name: 'プレミアムプラン',
-      price: 1980,
-      features: [
-        'プロプランの全機能',
-        'チーム機能',
-        'カスタムテーマ',
-        '高度な分析ツール',
-        'API連携',
-        '専任サポート'
-      ],
-      popular: false
     }
   ]
 
@@ -457,7 +444,7 @@ export default function Landing() {
                     className={`w-full ${plan.popular ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white' : 'bg-gray-900 hover:bg-gray-800 text-white'}`}
                     onClick={() => {
                       if (plan.price > 0) {
-                        setSelectedPlan(plan.name === 'プロプラン' ? 'pro' : 'premium')
+                        setSelectedPlan('pro')
                         setShowPaymentModal(true)
                       }
                     }}
@@ -625,8 +612,8 @@ export default function Landing() {
       <PaymentModal
         isOpen={showPaymentModal}
         onClose={() => setShowPaymentModal(false)}
-        amount={selectedPlan === 'pro' ? 980 : 1980}
-        planName={selectedPlan === 'pro' ? 'プロプラン' : 'プレミアムプラン'}
+        amount={980}
+        planName={'プロプラン'}
       />
     </div>
   )

@@ -90,13 +90,12 @@ const features = [
   {
     id: 'pricing',
     title: '💳 料金プラン',
-    description: '無料・プロ・プレミアムの3つのプランで柔軟な選択',
+    description: '無料とプロの2つのプランから選べます',
     icon: Gift,
     color: 'from-yellow-500 to-orange-500',
     benefits: [
       '無料プラン：基本機能',
       'プロプラン：月額980円',
-      'プレミアムプラン：月額1,980円',
       'PayPal決済対応'
     ],
     demo: 'ランディングページで料金詳細を確認'
@@ -128,19 +127,6 @@ const plans = [
       '町育成ゲーム（全機能）',
       '優先サポート',
       '習慣作成ウィザード'
-    ]
-  },
-  {
-    name: 'プレミアムプラン',
-    price: '月額1,980円',
-    color: 'text-purple-600',
-    bgColor: 'bg-purple-50',
-    features: [
-      'プロプランの全機能',
-      '特別な建物とエリア',
-      'カスタムテーマ',
-      '専用サポート',
-      '高度な分析機能'
     ]
   }
 ]

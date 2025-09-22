@@ -144,7 +144,7 @@ export default function Terms() {
             </p>
             <div className="mt-4 space-y-3">
               <h3 className="text-lg font-medium">料金プラン</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="border rounded-lg p-4">
                   <h4 className="font-semibold text-green-600">無料プラン</h4>
                   <p className="text-sm text-muted-foreground">基本機能を無料でご利用いただけます</p>
@@ -162,16 +162,6 @@ export default function Terms() {
                     <li>• 詳細な統計とレポート</li>
                     <li>• 町育成ゲーム（全機能）</li>
                     <li>• 優先サポート</li>
-                  </ul>
-                </div>
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-600">プレミアムプラン</h4>
-                  <p className="text-sm text-muted-foreground">月額1,980円</p>
-                  <ul className="text-sm text-muted-foreground mt-2 space-y-1">
-                    <li>• プロプランの全機能</li>
-                    <li>• 特別な建物とエリア</li>
-                    <li>• カスタムテーマ</li>
-                    <li>• 専用サポート</li>
                   </ul>
                 </div>
               </div>
